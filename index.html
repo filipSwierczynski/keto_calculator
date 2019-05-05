@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Keto Calculator</title>
+        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                crossorigin="anonymous" />
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+        <div class="container">
+                <form onsubmit="calculateMacros(); return false" id="" method="post" action="">
+                        <p>Complete the form to get calculate macros</p>
+                        <p>Eneter your weight</p>
+                        <div class="form-group row">
+                                <div class="col">
+                                        <label for="kg" class="col-form-label">Kilograms</label>
+                                        <input type="number" class="form-control" step="any" placeholder="Kilograms"
+                                                min="0" max="500" required name="kg" id="kg" />
+                                </div>
+                                <div class="col"><label for="lbs" class="col-form-label">Pounds</label><input
+                                                type="number" placeholder="Pounds" step="any" required min="0"
+                                                max="1000" class="form-control" name="lbg" id="lbs" />
+                                </div>
+                        </div>
+
+                        <p>Enter your height</p>
+                        <div class="form-group row">
+                                <div class="col">
+                                        <label for="cm" class="col-form-label">Centimeters</label><input type="number"
+                                                step="any" name="cm" class="form-control" required min="0" max="300"
+                                                placeholder="Centimeters" id="cm" />
+                                </div>
+
+
+
+                                <div class="col">
+                                        <label for="inch" class="col-form-label">Inches</label><input type="number"
+                                                step="any" min="0" class="form-control" max="600" name="inch"
+                                                placeholder="Inches" id="inch" />
+                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                                <div class="col">
+                                        <label class="col-form-label" for="age">Age</label>
+                                        <input type="number" class="form-control" placeholder="Age" name="age" id="age"
+                                                min="0" max="150" />
+                                </div>
+
+                                <div class="col">
+                                        <p class="col-form-label" for="gender">Gender</p>
+                                        <div class="custom-control custom-radio custom-control-inline">
+
+
+                                                <input type="radio" id="woman" name="gender"
+                                                        class="custom-control-input">
+                                                <label class="custom-control-label" for="woman">Woman</label>
+
+                                        </div>
+
+
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="man" name="gender" class="custom-control-input">
+                                                <label class="custom-control-label" for="man">Man</label>
+
+                                        </div>
+
+
+
+                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                                <div class="col">
+                                        <label class="col-form-label" for="dEE">Select your activity level</label>
+                                        <select class="custom-select" id="dEE">
+                                                <option value="1.2">Low physical activity</option>
+                                                <option value="1.375">1-3 times / week</option>
+                                                <option value="1.55">3-5 times / week</option>
+                                                <option value="1.725">6-7 times / week Or Physical Job</option>
+                                                <option value="1.9">7+ times / week And Physical Job</option>
+                                        </select>
+                                </div>
+                                <div class="col">
+                                        <label class="col-form-label" for="bodyFat">Estimated Body Fat %</label>
+                                        <input type="number" class="form-control" id="bodyFat" placeholder="%" />
+
+                                </div>
+
+
+
+
+
+                        </div>
+                        
+                        <div class="form-group row">
+                                <div class="col">
+                                        <p>Select your fitness goal</p>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+
+                                <div class="col">
+
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" min="1" max="99" onchange="setGoal()"
+                                                        class="custom-control-input" name="mOrI" id="fatLoss" />
+                                                <label class="custom-control-label" for="fatLoss">Fat Loss</label>
+                                        </div>
+                                </div>
+                                <div class="col">
+                                        <div class="custom-control custom-radio">
+                                                <input type="radio" onchange="setGoal()" min="1" max="99" max="12"
+                                                        name="mOrI" class="custom-control-input" id="weightGain" />
+                                                <label for="weightGain" class="custom-control-label">Build Muscle/Gain
+                                                        Weight</label>
+                                        </div>
+                                </div>
+
+                                <div class="col">
+                                        <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input" onchange="setGoal()"
+                                                        name="mOrI" id="maintain"/>
+                                                <label for="maintain" class="custom-control-label">Maintain
+                                                        Weight</label>
+
+
+                                        </div>
+
+                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                                <div class="col">
+                                                <label id="percentGoal">Goal % </label>
+                                                <input type="number" class="form-control" id="percentGoalInput" />
+                                </div>
+                        </div>
+                        
+
+                        <button class="btn btn-success"type="submit">Submit</button>
+
+
+                        <br />
+                </form>
+                <p id="resultBmr"></p>
+                <p id="macros"></p>
+        </div>
+
+        <script src="newketocalc.js"></script>
+</body>
+
+</html>
